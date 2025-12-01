@@ -82,7 +82,7 @@ export default function App() {
 
   const fetchStudents = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/students");
+      const res = await fetch("/api/students");
       const data = await res.json();
       setStudents(data);
     } catch (err) {
@@ -92,7 +92,7 @@ export default function App() {
 
   const fetchDepartments = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/departments");
+      const res = await fetch("/api/departments");
       const data = await res.json();
       setDepartments(data);
     } catch (err) {
@@ -113,7 +113,7 @@ export default function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/api/register", {
+      const response = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -145,7 +145,7 @@ export default function App() {
   const handleVerify = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/api/verify/${verifyId}`);
+      const res = await fetch(`/api/verify/${verifyId}`);
       const data = await res.json();
 
       if (data.valid) {
@@ -163,7 +163,7 @@ export default function App() {
   const handleDelete = async (id: string) => {
     if (confirm("Are you sure you want to delete this student record?")) {
       try {
-        await fetch(`http://localhost:3000/api/students/${id}`, {
+        await fetch(`/api/students/${id}`, {
           method: "DELETE",
         });
         fetchStudents(); // Refresh list
